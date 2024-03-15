@@ -91,3 +91,7 @@ Route::put('/Flight/{id}', function (Request $request, $id) {
 
 //     return view('/greeting');
 // });
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
