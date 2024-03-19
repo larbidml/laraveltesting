@@ -8,10 +8,10 @@
                 <div class="card">
 
                     <div class="card-header">
-                        Listado vuelos
+                        Listado de Contactos
                         {{-- boton --}}
                         {{-- <a href="{{ route('products.create')}}" class="btn btn-success btn-sm float-end ">Nuevo producto</a> --}}
-                        <a href="" class="btn btn-success btn-sm float-end ">Nuevo producto</a>
+                        <a href="" class="btn btn-success btn-sm float-end ">Nuevo Contacto</a>
                     </div>
 
                     <div class="card-body">
@@ -22,40 +22,38 @@
 
                         <table class="table table-striped">
                             <thead>
-                                <th>flight_number</th>
-                                <th>origin</th>
-                                <th>destination</th>
-                                <th>departure_time</th>
-                                <th>arrival_time</th>
-                                <th>capacity</th>
-                                <th>cancelled</th>
+                                <th>Documento</th>
+                                <th>Nombre</th>
                             </thead>
 
                             <tbody>
-                                @foreach ($flights as $flight )
+                                @foreach ($contacts as $contact )
                                 <tr>
     
-                                    <td>{{$flight->flight_number}}</td>
-                                    <td>{{$flight->origin}}</td>
-                                    <td>{{$flight->destination}}</td>
-                                    <td>{{$flight->departure_time}}</td>
-                                    <td>{{$flight->arrival_time}}</td>
-                                    <td>{{$flight->capacity}}</td>
-                                    <td>{{$flight->cancelled}}</td>
-
-
-
-
+                                    <td>{{$contact->document}}</td>
                                     <td>
+                                        {{
+
+
+                                        $contact->name ." ".
+                                        $contact->firstSurname ." ".
+                                        $contact->middleSurname
+                                        }}
+                                    </td>
+                                    <td> 
+                                        {{-- boton ver --}}
+                                        <a href="{{route('contacts.ver' , $contact->id)}}"
+                                            class="btn btn-secondary btn-sm ">Ver</a>
+
                                         {{-- boton edit --}}
-                                        <a href="{{route('flights.edit' , $flight->id)}}"
+                                        <a href="{{route('contacts.edit' , $contact->id)}}"
                                             class="btn btn-warning btn-sm ">Editar</a>
 
                                         {{-- boton delete --}}
-                                        <a href="javascript: document.getElementById('delete-{{$flight->id}}').submit()"
+                                        <a href="javascript: document.getElementById('delete-{{$contact->id}}').submit()"
                                             class="btn btn-danger btn-sm ">Eliminar</a>
-                                        <form id="delete-{{$flight->id}}"
-                                            action="{{ route('flights.destroy' , $flight->id)}}" method="POST">
+                                        <form id="delete-{{$contact->id}}"
+                                            action="{{ route('contacts.destroy' , $contact->id)}}" method="POST">
                                             @method('delete')
                                             @csrf
     
