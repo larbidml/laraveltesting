@@ -18,7 +18,7 @@ familyId
 placeOfBirth
 nifSupport
 socialSecurityNumber
-LINK
+driveLink
 bankAccount
 parentName
 motherName

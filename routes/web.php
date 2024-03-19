@@ -83,20 +83,30 @@ Route::delete('/contacts/{id}', function ($id) {
 
 Route::put('/contacts/{id}', function (Request $request, $id) {
     $contacts = Contact::findOrFail($id);
-    $contacts->nif = $request->input('nif');
-    $contacts->nombre1 = $request->input('nombre1');
-    $contacts->apellido1 = $request->input('apellido1');
-    $contacts->apellido2 = $request->input('apellido2');
-    $contacts->tel1 = $request->input('tel1');
-    $contacts->CALLE = $request->input('CALLE');
-    $contacts->NOCALLE = $request->input('NOCALLE');
-    $contacts->PISO = $request->input('PISO');
-    $contacts->PUERTA = $request->input('PUERTA');
-    $contacts->CP = $request->input('CP');
-    $contacts->CIUDAD = $request->input('CIUDAD');
-    $contacts->fn2 = $request->input('fn2');
 
-
+        $contacts->document = $request->input('document');
+        $contacts->expirationDate = $request->input('expirationDate');
+        $contacts->name = $request->input('name');
+        $contacts->firstSurname = $request->input('firstSurname');
+        $contacts->middleSurname = $request->input('middleSurname');
+        $contacts->phone = $request->input('phone');
+        $contacts->address = $request->input('address');
+        $contacts->cadastralNumber = $request->input('cadastralNumber');
+        $contacts->dateOfBirth = $request->input('dateOfBirth');
+        $contacts->healthCard = $request->input('healthCard');
+        $contacts->largeFamilyCard = $request->input('largeFamilyCard');
+        $contacts->email = $request->input('email');
+        $contacts->note = $request->input('note');
+        $contacts->passport = $request->input('passport');
+        $contacts->passportExpirationDate = $request->input('passportExpirationDate');
+        $contacts->familyId = $request->input('familyId');
+        $contacts->placeOfBirth = $request->input('placeOfBirth');
+        $contacts->nifSupport = $request->input('nifSupport');
+        $contacts->socialSecurityNumber = $request->input('socialSecurityNumber');
+        $contacts->driveLink = $request->input('driveLink');
+        $contacts->bankAccount = $request->input('bankAccount');
+        $contacts->parentName = $request->input('parentName');
+        $contacts->motherName = $request->input('motherName');
 
     $contacts->save();
     return redirect()->route('contacts.index')->with('info', 'contacts actualizado exitosamente');
