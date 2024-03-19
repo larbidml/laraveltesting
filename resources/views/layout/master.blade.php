@@ -32,13 +32,10 @@
                 <div class="collapse navbar-collapse" id="navbarNavDropdown">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Home</a>
+                            <a class="nav-link active" aria-current="page" href="{{ route('indexpricipal')}}">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('flights.index')}}">Vuelos</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('flights.search')}}">buscar</a>
+                            <a class="nav-link" href="{{ route('flights.search')}}">Vuelos</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('contacts.search')}}">Contactos</a>

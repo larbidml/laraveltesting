@@ -44,7 +44,7 @@
                                         {{-- boton ver --}}
                                         <a href="{{route('contacts.ver' , $contact->id)}}"
                                             class="btn btn-secondary btn-sm ">Ver</a>
-
+                                            
                                         {{-- boton edit --}}
                                         <a href="{{route('contacts.edit' , $contact->id)}}"
                                             class="btn btn-warning btn-sm ">Editar</a>

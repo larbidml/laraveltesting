@@ -9,11 +9,8 @@ use App\Models\Contact;
 use Illuminate\Database\Eloquent\Collection;
 
 Route::get('/', function () {
-    $flights = Flight::all();
-    //$flights = Flight::orderBy('created_at', 'desc')->get();
-    //return $flights ;
-    return view('flights.index', compact('flights'));
-});
+    return view('index');
+})->name('indexpricipal');
 
 
 Route::get('flights.index', function () {
@@ -36,8 +33,7 @@ Route::get('flights', function (Request $request) {
     $flights = Flight::where('origin', 'LIKE', '%' . $termino_busqueda . '%')->get();
     //$flights = Flight::orderBy('created_at', 'desc')->get();
     //return $flights ;
-   return view('flights.index', compact('flights'));
-   
+    return view('flights.index', compact('flights'));
 })->name('flights.buscar');
 
 
@@ -55,18 +51,21 @@ Route::get('/contacts/search', function () {
     return view('contacts.search');
 })->name('contacts.search');
 
-Route::get('/contacts/ver', function () {
-    return view('contacts.search');
+Route::get('/contacts/{id}/ver', function ($id) {
+    $contacts = Contact::findOrFail($id);
+    //return $contacts;
+    return view('contacts.ver', compact('contacts'));
 })->name('contacts.ver');
 
 Route::get('contacts', function (Request $request) {
     $termino_busqueda = $request->input('termino_busqueda');
     $contacts = Contact::where('name', 'LIKE', '%' . $termino_busqueda . '%')
-    ->orWhere('firstSurname', 'LIKE', '%' . $termino_busqueda . '%')
-    ->orWhere('middleSurname', 'LIKE', '%' . $termino_busqueda . '%')
-    ->orderBy('name')
-    ->get();
-   return view('contacts.index', compact('contacts'));
+        ->orWhere('firstSurname', 'LIKE', '%' . $termino_busqueda . '%')
+        ->orWhere('middleSurname', 'LIKE', '%' . $termino_busqueda . '%')
+        ->orWhere('document', 'LIKE', '%' . $termino_busqueda . '%')
+        ->orderBy('name')
+        ->get();
+    return view('contacts.index', compact('contacts'));
 })->name('contacts.buscar');
 
 Route::get('/contacts/{id}/edit', function ($id) {
@@ -84,38 +83,38 @@ Route::delete('/contacts/{id}', function ($id) {
 Route::put('/contacts/{id}', function (Request $request, $id) {
     $contacts = Contact::findOrFail($id);
 
-        $contacts->document = $request->input('document');
-        $contacts->expirationDate = $request->input('expirationDate');
-        $contacts->name = $request->input('name');
-        $contacts->firstSurname = $request->input('firstSurname');
-        $contacts->middleSurname = $request->input('middleSurname');
-        $contacts->phone = $request->input('phone');
-        $contacts->address = $request->input('address');
-        $contacts->cadastralNumber = $request->input('cadastralNumber');
-        $contacts->dateOfBirth = $request->input('dateOfBirth');
-        $contacts->healthCard = $request->input('healthCard');
-        $contacts->largeFamilyCard = $request->input('largeFamilyCard');
-        $contacts->email = $request->input('email');
-        $contacts->note = $request->input('note');
-        $contacts->passport = $request->input('passport');
-        $contacts->passportExpirationDate = $request->input('passportExpirationDate');
-        $contacts->familyId = $request->input('familyId');
-        $contacts->placeOfBirth = $request->input('placeOfBirth');
-        $contacts->nifSupport = $request->input('nifSupport');
-        $contacts->socialSecurityNumber = $request->input('socialSecurityNumber');
-        $contacts->driveLink = $request->input('driveLink');
-        $contacts->bankAccount = $request->input('bankAccount');
-        $contacts->parentName = $request->input('parentName');
-        $contacts->motherName = $request->input('motherName');
+    $contacts->document = $request->input('document');
+    $contacts->expirationDate = $request->input('expirationDate');
+    $contacts->name = $request->input('name');
+    $contacts->firstSurname = $request->input('firstSurname');
+    $contacts->middleSurname = $request->input('middleSurname');
+    $contacts->phone = $request->input('phone');
+    $contacts->address = $request->input('address');
+    $contacts->cadastralNumber = $request->input('cadastralNumber');
+    $contacts->dateOfBirth = $request->input('dateOfBirth');
+    $contacts->healthCard = $request->input('healthCard');
+    $contacts->largeFamilyCard = $request->input('largeFamilyCard');
+    $contacts->email = $request->input('email');
+    $contacts->note = $request->input('note');
+    $contacts->passport = $request->input('passport');
+    $contacts->passportExpirationDate = $request->input('passportExpirationDate');
+    $contacts->familyId = $request->input('familyId');
+    $contacts->placeOfBirth = $request->input('placeOfBirth');
+    $contacts->nifSupport = $request->input('nifSupport');
+    $contacts->socialSecurityNumber = $request->input('socialSecurityNumber');
+    $contacts->driveLink = $request->input('driveLink');
+    $contacts->bankAccount = $request->input('bankAccount');
+    $contacts->parentName = $request->input('parentName');
+    $contacts->motherName = $request->input('motherName');
 
     $contacts->save();
-    return redirect()->route('contacts.index')->with('info', 'contacts actualizado exitosamente');
+    return redirect()->route('contacts.ver',$contacts->id)->with('info', 'contacts actualizado exitosamente');
 })->name('contacts.update');
 
 // Route::post('/products', function (Request $request) {
 
 //     //return $request;
-//     // $request es {"_token":"rBp6HgD34BSsl98uwaIsg3TsIsnWSk0nWTEqWL3W","description":"aple","price":"60"
+//   
 //     $newProduct = new Product;
 //     $newProduct->description = $request->input('description');
 //     $newProduct->price = $request->input('price');
@@ -132,7 +131,7 @@ Route::put('/contacts/{id}', function (Request $request, $id) {
 // Route::get('/', function () {
 
 //     $flights = Flight::where('origin', 'PARIS')->get();
- 
+
 //     $flights = $flights->reject(function (Flight $flight) {
 //         return $flight->cancelled;
 //     });
