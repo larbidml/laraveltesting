@@ -9,8 +9,22 @@
 
                 <div class="card-header">
                     Ver Contacto
-                    <a href="" class="btn btn-success btn-sm float-end ">ver Contacto</a>
+                    <a href="{{route('contacts.familia' , $contacts->familyId)}}" class="btn btn-success btn-sm float-end ">familia</a>
                 </div>
+                <?php
+                $campos = array( "document","name","firstSurname","middleSurname",
+                "phone","address","cadastralNumber","healthCard","largeFamilyCard",
+                "email","note","passport","familyId","placeOfBirth",
+                "nifSupport","socialSecurityNumber","driveLink","bankAccount","parentName","motherName"
+                );
+                foreach ($campos as $campo) {
+                        if (!isset($contacts->$campo)) {
+                        $contacts->$campo = '';
+                        }
+                }
+                ?>
+
+
 
                 <table class="table table-striped">
                     <tbody>
@@ -22,7 +36,7 @@
 
                             <th class=" col-lg-2  ">expirationDate</th>
                             <td>
-                            <?PHP  
+                                <?PHP  
                             $expirationDate =  $contacts->expirationDate;                         
                             $expirationDate =  $expirationDate[8] . $expirationDate[9] ."/" .
                             $expirationDate[5] . $expirationDate[6] ."/" .
@@ -40,13 +54,13 @@
                             </td>
                             <th></th>
                             <td></td>
-                           
+
                         </tr>
                         <tr>
                             <th class=" col-lg-2  ">phone</th>
                             <td>{{ $contacts->phone}}</td>
-                            <th></th>
-                            <td></td>
+                            <th class=" col-lg-2  ">email</th>
+                            <td>{{ $contacts->email}}</td>
                         </tr>
 
                         <tr>
@@ -56,17 +70,17 @@
                             <td>{{ $contacts->cadastralNumber}}</td>
                         </tr>
                         <tr>
-                     <th class=" col-lg-2  ">dateOfBirth</th>
+                            <th class=" col-lg-2  ">dateOfBirth</th>
                             <td>
-                            <b>
-                                <?PHP  
+                                <b>
+                                    <?PHP  
                                     $dateOfBirth =  $contacts->dateOfBirth;                         
                                     $dateOfBirth =  $dateOfBirth[8] . $dateOfBirth[9] ."/" .
                                     $dateOfBirth[5] . $dateOfBirth[6] ."/" .
                                     $dateOfBirth[0] . $dateOfBirth[1] . $dateOfBirth[2] . $dateOfBirth[3];
                                     echo $dateOfBirth ;
                                   ?>
-                            </b>
+                                </b>
                             </td>
 
 
@@ -95,21 +109,14 @@
                         <tr>
                             <th class=" col-lg-2  ">healthCard</th>
                             <td>{{ $contacts->healthCard}}</td>
-                            <th></th>
-                            <td></td>
-                        </tr>
-                        <tr>
+
                             <th class=" col-lg-2  ">largeFamilyCard</th>
                             <td>{{ $contacts->largeFamilyCard}}</td>
-                            <th></th>
-                            <td></td>
+
+
                         </tr>
-                        <tr>
-                            <th class=" col-lg-2  ">email</th>
-                            <td>{{ $contacts->email}}</td>
-                            <th></th>
-                            <td></td>
-                        </tr>
+
+
                         <tr>
                             <th class=" col-lg-2  ">note</th>
                             <td>{{ $contacts->note}}</td>
@@ -123,14 +130,14 @@
                             <th class=" col-lg-2  ">passportExpirationDate</th>
 
                             <td>
-                                    <?PHP  
+                                <?PHP  
                                         $passportExpirationDate =  $contacts->passportExpirationDate;                         
                                         $passportExpirationDate =  $passportExpirationDate[8] . $passportExpirationDate[9] ."/" .
                                         $passportExpirationDate[5] . $passportExpirationDate[6] ."/" .
                                         $passportExpirationDate[0] . $passportExpirationDate[1] . $passportExpirationDate[2] . $passportExpirationDate[3];
                                         echo $passportExpirationDate ;
                                       ?>
-                                </td>
+                            </td>
 
 
 
@@ -145,27 +152,18 @@
                         <tr>
                             <th class=" col-lg-2  ">familyId</th>
                             <td>{{ $contacts->familyId}}</td>
-                            <th></th>
-                            <td></td>
+                            <th class=" col-lg-2  ">nifSupport</th>
+                            <td>{{ $contacts->nifSupport}}</td>
+
                         </tr>
                         <tr>
                             <th class=" col-lg-2  ">placeOfBirth</th>
                             <td>{{ $contacts->placeOfBirth}}</td>
-                            <th></th>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <th class=" col-lg-2  ">nifSupport</th>
-                            <td>{{ $contacts->nifSupport}}</td>
-                            <th></th>
-                            <td></td>
-                        </tr>
-                        <tr>
                             <th class=" col-lg-2  ">socialSecurityNumber</th>
                             <td>{{ $contacts->socialSecurityNumber}}</td>
-                            <th></th>
-                            <td></td>
+
                         </tr>
+
 
 
 

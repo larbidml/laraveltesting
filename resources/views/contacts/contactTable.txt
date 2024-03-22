@@ -24,3 +24,15 @@ parentName
 motherName
 created_at
 updated_at
+
+
+$campos = array( "document","expirationDate","name","firstSurname","middleSurname",
+  "phone","address","cadastralNumber","dateOfBirth","healthCard","largeFamilyCard",
+  "email","note","passport","passportExpirationDate","familyId","placeOfBirth",
+  "nifSupport","socialSecurityNumber","driveLink","bankAccount","parentName","motherName"
+);
+
+foreach ($campos as $campo) {
+  echo  $campo ;
+  echo "<br>";
+}

@@ -5,13 +5,13 @@
     <div class="row">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">
-                    Buscar  Contactos
+                <div class="card-header bg-dark text-light">
+                    Buscar  Tramite
                     {{-- boton --}}
-                    <a href="{{ route('contacts.create')}}" class="btn btn-success btn-sm float-end ">Nuevo producto</a>
+                    <a href="{{ route('tramites.create')}}" class="btn btn-success btn-sm float-end ">Nuevo Tramite</a>
                 </div>
-                <div class="card-body">
-                    <form action="{{route('contacts.buscar')}}" method="GET">
+                <div class="card-body bg-secondary text-light">
+                    <form action="{{route('tramites.buscar')}}" method="GET" >
                         @csrf
                         <div class="form-group">
                             <label for="">nombre</label>
